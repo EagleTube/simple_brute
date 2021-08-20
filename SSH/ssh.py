@@ -1,4 +1,4 @@
-import paramiko, os, sys, threading
+import paramiko, os, sys
 
 def helpdesk():
     print("Usage : python ssh.py [IP ADDRESS] -u [SSH USER] -p [SSH PORT] -w [TXT WORDLIST]")
