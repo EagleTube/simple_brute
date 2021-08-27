@@ -32,7 +32,7 @@ print(f"""{Style.BRIGHT + Fore.RED}
 {Fore.WHITE}═══════════════════════════════════════════════════════════════════════════════════════════════════════════════
 """)
 def helpdesk():
-    print("Usage : python dirbrute.py -u http://example.com/ -w wordlist.txt")
+    print(Style.BRIGHT+Fore.WHITE+"Usage : python dirbrute.py -u http://example.com/ -w wordlist.txt")
 
 def checkUrl(url):
     web_arr = urlparse(url)
@@ -48,7 +48,7 @@ def loadTxt(word):
         f = open(word,'r')
         return f.readlines()
     except FileNotFoundError:
-        print("File you request doesn't exist!")
+        print(Style.BRIGHT+Fore.RED+"File you request doesn't exist!")
 
 def connectURL(url):
     scraper = cloudscraper.create_scraper(
@@ -61,15 +61,24 @@ def connectURL(url):
     try:
         try:
             conn = scraper.get(url,timeout=3)
-            print("{} -> {}".format(conn.status_code,url))
+            if(conn.status_code>=200 and conn.status_code<=299):
+                print(Style.BRIGHT+Fore.GREEN+"{} -> {}".format(conn.status_code,url))
+            elif(conn.status_code>=400 and conn.status_code<=499):
+                print(Style.BRIGHT+Fore.BLUE+"{} -> {}".format(conn.status_code,url))
+            elif(conn.status_code>=100 and conn.status_code<=199):
+                print(Style.BRIGHT+Fore.WHITE+"{} -> {}".format(conn.status_code,url))
+            elif(conn.status_code>=300 and conn.status_code<=399):
+                print(Style.BRIGHT+Fore.YELLOW+"{} -> {}".format(conn.status_code,url))
+            else:
+                print(Style.BRIGHT+Fore.RED+"{} -> {}".format(conn.status_code,url))
         except KeyboardInterrupt:
-            print("Process stopped!")
+            print(Style.BRIGHT+Fore.YELLOW+"Process stopped!")
             try:
                 sys.exit(0)
             except SystemExit:
                 os._exit(0)
     except:
-        print("No connection! -> {}".format(url))
+        print(Style.BRIGHT+Fore.RED+"No connection! -> {}".format(url))
         sys.exit(0)
 
 def startX(url,word):
@@ -82,7 +91,7 @@ def position(arr,types):
     if(types=="-u" or types=="-w"):
         return arr.index(types) + 1
     else:
-        print("No such option for {}".format(types))
+        print(Style.BRIGHT+Fore.WHITE+"No such option for {}".format(types))
 
 def main():
     start = time.perf_counter()
