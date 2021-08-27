@@ -9,10 +9,10 @@ d2 = today.strftime("%B %d, %Y")
 
 if platform.system()=='Linux':
     os.system('clear')
-    sys.stdout.write("\x1b]2;SPAM-PHISHING MAIL DFM {}\x07".format(d2))
+    sys.stdout.write("\x1b]2;DIRECTORY BRUTEFORCER {}\x07".format(d2))
 else:
     os.system('cls')
-    ctypes.windll.kernel32.SetConsoleTitleW(f'SPAM-PHISHING MAIL DFM | {d2}')
+    ctypes.windll.kernel32.SetConsoleTitleW(f'DIRECTORY BRUTEFORCER | {d2}')
 
 print(f"""{Style.BRIGHT + Fore.RED}
  ██████╗ ██████╗  █████╗  ██████╗  ██████╗ ███╗   ██╗███████╗ ██████╗ ██████╗  ██████╗███████╗   ██╗ ██████╗ 
